@@ -1,18 +1,8 @@
 import ChargeCard from './ChargeCard';
-import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof ChargeCard> = {
+export default {
   title: 'UI/ChargeCard',
   component: ChargeCard,
-  tags: ['autodocs'],
 };
 
-export default meta;
-
-type Story = StoryObj<typeof ChargeCard>;
-
-export const Default: Story = {
-  args: {
-    amount: 24.0,
-  },
-};
+export const Default = () => <ChargeCard amount={24.0} />;

@@ -7,6 +7,7 @@ interface ProductCardProps {
   subtitle?: string;
   price: number;
   quantity: number;
+  description?: string;
   onAdd?: () => void;
   onRemove?: () => void;
   onDelete?: () => void;
@@ -19,6 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   subtitle,
   price,
   quantity,
+  description,
   onAdd,
   onRemove,
   onDelete,
@@ -63,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {isHorizontal && onDelete && (
               <Pressable onPress={onDelete} style={{ padding: 2 }}>
                 <Image 
-                  source={require("../../assets/delete.png")} 
+                  source={require("../../assets/delete.png")}
                   style={{ width: 22, height: 22, }} 
                 />
               </Pressable>
@@ -71,6 +73,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </View>
           {subtitle && (
             <Text style={{ color: '#888', fontSize: 14, marginTop: 2 }}>{subtitle}</Text>
+          )}
+          {description && (
+            <Text style={{ color: '#888', fontSize: 14, marginTop: 2 }}>{description}</Text>
           )}
         </View>
         <View style={{ 
@@ -107,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 shadowOpacity: 0.1,
               }}
             >
-              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#555' }}>–</Text>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#555', lineHeight: 22, textAlign: 'center' }}>–</Text>
             </Pressable>
             
             <Text style={{ fontSize: 15, fontWeight: '700', color: '#333', marginHorizontal: 6 }}>
@@ -126,7 +131,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 alignItems: 'center' 
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>+</Text>
+              <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#000', lineHeight: 24, textAlign: 'center' }}>+</Text>
             </Pressable>
           </View>
         </View>

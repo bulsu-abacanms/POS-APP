@@ -1,8 +1,7 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
 import TopBar from './TopBar';
 
-const meta: Meta<typeof TopBar> = {
+export default {
   title: 'Layout/TopBar',
   component: TopBar,
   parameters: {
@@ -10,17 +9,10 @@ const meta: Meta<typeof TopBar> = {
   },
 };
 
-export default meta;
-type Story = StoryObj<typeof TopBar>;
+export const Default = () => (
+  <TopBar variant="default" ticketCount={3} />
+);
 
-export const Default: Story = {
-  render: () => (
-    <TopBar variant="default" ticketCount={3} />
-  ),
-};
-
-export const Ticket: Story = { 
-  render: () => (
-    <TopBar variant="ticket" ticketCount={3} /> 
-  ),
-};
+export const Ticket = () => (
+  <TopBar variant="ticket" ticketCount={3} />
+);

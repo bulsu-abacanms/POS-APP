@@ -1,4 +1,11 @@
 {
-  "extends": "./node_modules/expo/tsconfig.base.json",
-  "compilerOptions": {}
+  "compilerOptions": {
+    "jsx": "react-native",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "isolatedModules": true
+  },
+  "extends": "expo/tsconfig.base"
 }

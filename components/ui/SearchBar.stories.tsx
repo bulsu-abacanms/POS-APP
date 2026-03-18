@@ -18,13 +18,13 @@ const meta = {
 };
 
 export default meta;
-
 export const Default = {
   args: {
     value: "",
     placeholder: "Search..",
     onChangeText: () => {},
-    onFilterPress: () => {},
+    onFilterPress: () => console.log("Filter Pressed"),
+    onQRPress: () => console.log("QR Pressed"),
   },
   render: (args) => <SearchBar {...args} />,
 };

@@ -5,32 +5,32 @@ import topBarStyles from '../../utilities/components/topBarStyles';
 interface TopBarProps {
   ticketCount?: number;
   variant?: 'default' | 'ticket';
+  onTicketPress?: () => void;
+  onDashboardPress?: () => void;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ ticketCount = 3, variant = 'default' }) => {
+const TopBar: React.FC<TopBarProps> = ({ ticketCount = 3, variant = 'default', onTicketPress, onDashboardPress }) => {
   const isTicketVariant = variant === 'ticket';
 
   return (
     <View style={topBarStyles.container}>
-      <TouchableOpacity style={topBarStyles.iconButton}>
+      <TouchableOpacity style={topBarStyles.iconButton} onPress={onDashboardPress}>
         <Image 
           source={require('../../assets/dashboard.png')} 
           style={topBarStyles.icon} 
           resizeMode="contain" 
         />
       </TouchableOpacity>
-      <View style={[
-        topBarStyles.ticketPill, 
-        isTicketVariant && topBarStyles.ticketPillGreen 
-      ]}>
+      <TouchableOpacity
+        style={[topBarStyles.ticketPill, isTicketVariant && topBarStyles.ticketPillGreen]}
+        onPress={onTicketPress}
+        activeOpacity={0.8}
+      >
         <Text style={topBarStyles.ticketLabel}>Ticket</Text>
-        <View style={[
-          topBarStyles.badge, 
-          isTicketVariant && topBarStyles.badgeWhite 
-        ]}>
+        <View style={[topBarStyles.badge, isTicketVariant && topBarStyles.badgeWhite]}>
           <Text style={topBarStyles.badgeText}>{ticketCount}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
       <TouchableOpacity style={topBarStyles.iconButton}>
         {isTicketVariant ? (
           <View style={topBarStyles.moreIconContainer}>

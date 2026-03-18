@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text,} from 'react-native';
 import { Input } from '../components/ui/Input';
-import { TouchableOpacity } from 'react-native';
+import Button from '../components/Button/Button';
 import { buttonStyles } from '../utilities/components/buttonStyles';
 import { loginStyles } from '../utilities/pages/loginStyles';
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
+   
+    navigation.navigate('Dashboard');
   };
 
   return (
@@ -33,9 +35,13 @@ const Login = () => {
         placeholder="Enter your password"
         secureTextEntry
       />
-      <TouchableOpacity style={[buttonStyles.baseButton, loginStyles.loginButton]} onPress={handleLogin}>
-        <Text style={loginStyles.loginButtonText}>Login</Text>
-      </TouchableOpacity>
+      <Button
+        label="Login"
+        variant="primary"
+        style={loginStyles.loginButton}
+        textStyle={loginStyles.loginButtonText}
+        onPress={handleLogin}
+      />
     </View>
   );
 };

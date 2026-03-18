@@ -2,6 +2,7 @@ import { Pressable, Text } from "react-native";
 import React from "react";
 import  buttonStyles  from "../../utilities/components/buttonStyles";
 import { theme } from "../../utilities/theme";
+import { View } from "react-native";
 
 interface ButtonProps {
   label?: string;
@@ -11,6 +12,8 @@ interface ButtonProps {
   className?: string;
   style?: object;
   textStyle?: object;
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -21,6 +24,8 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   style,
   textStyle,
+  icon,
+  iconPosition = "left",
 }) => {
   const isSecondary = variant === "secondary";
 
@@ -28,19 +33,25 @@ const Button: React.FC<ButtonProps> = ({
     <Pressable
       onPress={onPress}
       disabled={disabled}
-      className={`items-center justify-center rounded-full min-w-[240px] px-10 py-4 shadow-lg text-base font-body transition-all duration-200 focus:outline-none disabled:opacity-50 ${className}`}
+      className={`items-center justify-center rounded-full min-w-[120px] px-6 py-2 shadow-lg text-base font-body transition-all duration-200 focus:outline-none disabled:opacity-50 flex-row ${className}`}
       style={[
         buttonStyles.baseButton,
         isSecondary ? buttonStyles.secondary : buttonStyles.primary,
         style,
       ]}
     >
+      {icon && iconPosition === "left" && (
+        <View style={{ marginRight: 8 }}>{icon}</View>
+      )}
       <Text
-        className="text-[40px] text-center font-body text-black"
-        style={[{ minWidth: 100, textAlign: 'center', fontWeight: '400', color: isSecondary ? '#222' : theme.colors.textPrimary }, textStyle]}
+        className="text-center font-body text-black"
+        style={[{ textAlign: 'center', fontWeight: '400', color: isSecondary ? '#222' : theme.colors.textPrimary }, textStyle]}
       >
         {label}
       </Text>
+      {icon && iconPosition === "right" && (
+        <View style={{ marginLeft: 8 }}>{icon}</View>
+      )}
     </Pressable>
   );
 };
